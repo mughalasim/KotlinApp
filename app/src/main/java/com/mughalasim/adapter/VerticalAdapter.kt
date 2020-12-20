@@ -7,14 +7,32 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mughalasim.R
+import com.mughalasim.databinding.ListItemVerticalBinding
 import com.mughalasim.network.model.SectionsModel
 import com.mughalasim.utils.Shared.Companion.MAX_HORIZONTAL_ITEMS
-import kotlinx.android.synthetic.main.list_item_vertical.view.*
 
 class VerticalAdapter(private val context: Context, private val list: List<SectionsModel>?) : RecyclerView.Adapter<VerticalAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItems(list?.get(position))
+        with(holder){
+            binding.txtTitle.text =  list?.get(position)?.name
+            binding.horizontalRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            val count = list?.get(position)?.itemData?.size
+            if (count != null) {
+                if (count < MAX_HORIZONTAL_ITEMS){
+                    binding.llViewAll.visibility = View.GONE
+                } else {
+                    binding.llViewAll.visibility = View.VISIBLE
+                }
+                // We only want to show say 6 items only
+                binding.horizontalRecyclerView.visibility = View.VISIBLE
+                binding.horizontalRecyclerView.adapter = HorizontalAdapter(context,  list?.get(position)?.itemData?.take(MAX_HORIZONTAL_ITEMS))
+            } else {
+                binding.llViewAll.visibility = View.GONE
+                binding.txtMessage.text = "No sub categories found in this section"
+                binding.horizontalRecyclerView.visibility = View.GONE
+            }
+        }
     }
 
     override fun getItemCount(): Int {
@@ -26,27 +44,7 @@ class VerticalAdapter(private val context: Context, private val list: List<Secti
         return ViewHolder(view)
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        fun bindItems(section: SectionsModel?) {
-            itemView.txt_title.text = section?.name
-            itemView.horizontal_recycler_view.layoutManager = LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
-            val count = section?.itemData?.size
-            if (count != null) {
-                if (count < MAX_HORIZONTAL_ITEMS){
-                    itemView.ll_view_all.visibility = View.GONE
-                } else {
-                    itemView.ll_view_all.visibility = View.VISIBLE
-                }
-                // We only want to show say 6 items only
-                itemView.horizontal_recycler_view.visibility = View.VISIBLE
-                itemView.horizontal_recycler_view.adapter = HorizontalAdapter(itemView.context, section.itemData?.take(MAX_HORIZONTAL_ITEMS))
-            } else {
-                itemView.ll_view_all.visibility = View.GONE
-                itemView.txt_message.text = "No sub categories found in this section"
-                itemView.horizontal_recycler_view.visibility = View.GONE
-            }
-
-        }
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val binding = ListItemVerticalBinding.bind(view)
     }
 }

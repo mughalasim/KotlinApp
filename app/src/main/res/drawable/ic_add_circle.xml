@@ -4,7 +4,7 @@
     android:height="24dp"
     android:viewportWidth="24"
     android:viewportHeight="24"
-    android:tint="@color/colorAccent"
+    android:tint="@color/design_default_color_primary"
     tools:ignore="VectorRaster">
   <path
       android:fillColor="#fff"
