@@ -5,5 +5,6 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class ResultModel (
-    var sections: List<SectionsModel>? = null,
+        var results: List<PeopleModel>? = null,
+        var next: String? = null
 ) : Parcelable

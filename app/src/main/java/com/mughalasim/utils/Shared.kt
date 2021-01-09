@@ -5,12 +5,15 @@ import java.text.DecimalFormat
 class Shared {
     companion object {
         @JvmField
-        val BASE_URL =
-            "https://thefa-cm.streamamg.com/api/v1/";
+        val BASE_URL = "https://swapi.dev/api/"
 
-        var MAX_HORIZONTAL_ITEMS: Int = 6
+        @JvmField
+        val TAG = "DEBUG APP"
 
-        fun getTimeFromMinutes(time: Int) : String {
+        @JvmField
+        val DEFAULT_PAGE_NUMBER = 1
+
+        fun getTimeFromMinutes(time: Int): String {
             val dec = DecimalFormat("00")
 
             var n = time % (24 * 3600)
