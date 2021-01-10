@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="field"
+            type="com.mughalasim.model.DescActivityViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="20dp" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <TextView
+            android:id="@+id/label_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/list_text"
+            app:layout_constraintStart_toStartOf="@+id/guideline_1"
+            app:layout_constraintTop_toTopOf="@+id/guideline_3" />
+
+        <TextView
+            android:id="@+id/txt_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{field.people.name}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/list_text"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_2"
+            app:layout_constraintTop_toTopOf="@+id/guideline_3" />
+
+        <TextView
+            android:id="@+id/label_height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/txt_height"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/list_text"
+            app:layout_constraintStart_toStartOf="@+id/guideline_1"
+            app:layout_constraintTop_toBottomOf="@+id/label_name" />
+
+        <TextView
+            android:id="@+id/txt_height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@{field.people.height}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/list_text"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_2"
+            app:layout_constraintTop_toBottomOf="@+id/txt_name" />
+
+        <TextView
+            android:id="@+id/label_mass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/txt_mass"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/list_text"
+            app:layout_constraintStart_toStartOf="@+id/guideline_1"
+            app:layout_constraintTop_toBottomOf="@+id/label_height" />
+
+        <TextView
+            android:id="@+id/txt_mass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@{field.people.mass}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/list_text"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_2"
+            app:layout_constraintTop_toBottomOf="@+id/txt_height" />
+
+
+        <TextView
+            android:id="@+id/label_date_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/txt_date_and_time"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/list_text"
+            app:layout_constraintStart_toStartOf="@+id/guideline_1"
+            app:layout_constraintTop_toBottomOf="@+id/label_mass" />
+
+        <TextView
+            android:id="@+id/txt_date_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@{field.dateTime}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="@color/list_text"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_2"
+            app:layout_constraintTop_toBottomOf="@+id/txt_mass" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

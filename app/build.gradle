@@ -44,18 +44,18 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation "androidx.cardview:cardview:1.0.0"
-    implementation "com.squareup.picasso:picasso:2.5.2"
+    implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
     // Testing frameworks
     testImplementation 'junit:junit:4.13.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
 
     // Rest API calls
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
-    implementation "com.squareup.retrofit2:converter-gson:2.8.1"
+    // lib for parsing JSON api responses
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
 }

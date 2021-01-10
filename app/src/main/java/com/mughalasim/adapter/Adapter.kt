@@ -1,6 +1,7 @@
 package com.mughalasim.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mughalasim.R
 import com.mughalasim.databinding.ListItemBinding
 import com.mughalasim.network.model.PeopleModel
+import com.mughalasim.ui.DescActivity
 
 class Adapter(private val context: Context) :
     RecyclerView.Adapter<Adapter.ViewHolder>() {
@@ -25,6 +27,11 @@ class Adapter(private val context: Context) :
     }
 
     fun showLoading(show: Boolean) {
+        // Add a loading progress bar under the last list item while fetching more.
+        // The list items where only ten so I decided to call the API till the last page
+        // Obviously would be have been better to call first 4 pages first then let the scroll listener
+        // detect when the user has reached the end to load more
+
         if (show) {
             list = list?.plus(PeopleModel("", "", "", "", true))
         } else {
@@ -41,6 +48,17 @@ class Adapter(private val context: Context) :
                 binding.progress.visibility = View.GONE
             }
             binding.txtName.text = list?.get(position)?.name
+
+            binding.txtName.setOnClickListener {
+                // If the data isn't present do not take the user to the next activity
+                if (list?.get(position) == null){
+                    return@setOnClickListener
+                }
+                val intent = Intent(context, DescActivity::class.java)
+                // Pass data to next activity as a parsable
+                intent.putExtra("person", list?.get(position))
+                context.startActivity(intent)
+            }
         }
     }
 
