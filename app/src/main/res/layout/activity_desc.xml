@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:text="@string/txt_name"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/list_text"
+            android:textColor="@color/label_text"
             app:layout_constraintStart_toStartOf="@+id/guideline_1"
             app:layout_constraintTop_toTopOf="@+id/guideline_3" />
 
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:text="@{field.people.name}"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/list_text"
+            android:textColor="@color/data_value_text"
             app:layout_constraintEnd_toStartOf="@+id/guideline_2"
             app:layout_constraintTop_toTopOf="@+id/guideline_3" />
 
@@ -64,7 +64,7 @@
             android:layout_marginTop="20dp"
             android:text="@string/txt_height"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/list_text"
+            android:textColor="@color/label_text"
             app:layout_constraintStart_toStartOf="@+id/guideline_1"
             app:layout_constraintTop_toBottomOf="@+id/label_name" />
 
@@ -75,7 +75,7 @@
             android:layout_marginTop="20dp"
             android:text="@{field.people.height}"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/list_text"
+            android:textColor="@color/data_value_text"
             app:layout_constraintEnd_toStartOf="@+id/guideline_2"
             app:layout_constraintTop_toBottomOf="@+id/txt_name" />
 
@@ -86,7 +86,7 @@
             android:layout_marginTop="20dp"
             android:text="@string/txt_mass"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/list_text"
+            android:textColor="@color/label_text"
             app:layout_constraintStart_toStartOf="@+id/guideline_1"
             app:layout_constraintTop_toBottomOf="@+id/label_height" />
 
@@ -97,7 +97,7 @@
             android:layout_marginTop="20dp"
             android:text="@{field.people.mass}"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/list_text"
+            android:textColor="@color/data_value_text"
             app:layout_constraintEnd_toStartOf="@+id/guideline_2"
             app:layout_constraintTop_toBottomOf="@+id/txt_height" />
 
@@ -109,7 +109,7 @@
             android:layout_marginTop="20dp"
             android:text="@string/txt_date_and_time"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/list_text"
+            android:textColor="@color/label_text"
             app:layout_constraintStart_toStartOf="@+id/guideline_1"
             app:layout_constraintTop_toBottomOf="@+id/label_mass" />
 
@@ -120,7 +120,7 @@
             android:layout_marginTop="20dp"
             android:text="@{field.dateTime}"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/list_text"
+            android:textColor="@color/data_value_text"
             app:layout_constraintEnd_toStartOf="@+id/guideline_2"
             app:layout_constraintTop_toBottomOf="@+id/txt_mass" />
     </androidx.constraintlayout.widget.ConstraintLayout>

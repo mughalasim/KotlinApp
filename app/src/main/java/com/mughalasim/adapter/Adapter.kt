@@ -21,17 +21,12 @@ class Adapter(private val context: Context) :
         this.notifyDataSetChanged()
     }
 
-    fun clearData() {
-        list = listOf()
-        this.notifyDataSetChanged()
-    }
-
     fun showLoading(show: Boolean) {
         // Add a loading progress bar under the last list item while fetching more.
-        if (show) {
-            list = list?.plus(PeopleModel("", "", "", "", true))
+        list = if (show) {
+            list?.plus(PeopleModel("", "", "", "", true))
         } else {
-            list = list?.dropLast(1)
+            list?.dropLast(1)
         }
         this.notifyDataSetChanged()
     }

@@ -2,5 +2,7 @@
 <resources>
     <color name="label_text">#DDBB00</color>
     <color name="background">#222222</color>
+    <color name="card_background">#5E5E5E</color>
     <color name="list_text">#FFFFFFFF</color>
+    <color name="data_value_text">#FFFFFFFF</color>
 </resources>

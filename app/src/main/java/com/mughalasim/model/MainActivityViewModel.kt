@@ -1,6 +1,5 @@
 package com.mughalasim.model
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mughalasim.network.ApiInterface
@@ -22,14 +21,11 @@ class MainActivityViewModel : ViewModel() {
     var peopleList: MutableLiveData<List<PeopleModel>> = MutableLiveData(listOf())
 
     fun getDataFromAPI() {
-        Log.d(Shared.TAG, "FETCHING DATA ON PAGE: " + pageNumber)
-
         showLoading.postValue(true)
 
         ApiInterface.create().getResult(pageNumber).enqueue(object : Callback<ResultModel> {
 
             override fun onFailure(call: Call<ResultModel>?, t: Throwable?) {
-                Log.d(Shared.TAG, "RESPONSE ERROR: " + t.toString())
                 showLoading.postValue(false)
                 if (pageNumber == 1){
                     txtErrorMessage.postValue("Failed to load data: " + t.toString())
@@ -43,12 +39,10 @@ class MainActivityViewModel : ViewModel() {
                 showLoading.postValue(false)
                 showDialog.postValue(false)
 
-                Log.d(Shared.TAG, "RESPONSE CODE: " + response?.code())
-
                 val code = response?.code()
 
                 if (code != 200 || response.body() == null) {
-                    txtErrorMessage.postValue("Error response from the server: " + code)
+                    txtErrorMessage.postValue("Error response from the server: $code")
                     showDialog.postValue(true)
                     return
                 }

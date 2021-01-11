@@ -2,6 +2,4 @@
     <!-- Custom margins can be set to cater for different screen resolutions easily from here -->
     <dimen name="margin_large">20dp</dimen>
     <dimen name="margin_small">10dp</dimen>
-    <dimen name="vertical_list_height">250dp</dimen>
-    <dimen name="vertical_list_width">320dp</dimen>
 </resources>

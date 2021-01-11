@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.mughalasim.R
 import com.mughalasim.databinding.ActivityDescBinding
 import com.mughalasim.model.DescActivityViewModel
+import com.mughalasim.utils.Shared
 
 class DescActivity : AppCompatActivity() {
 
@@ -21,7 +22,7 @@ class DescActivity : AppCompatActivity() {
         binding.field = viewModel
         binding.lifecycleOwner = this
 
-        viewModel.people = intent.getParcelableExtra("person")!!
+        viewModel.people = intent.getParcelableExtra(Shared.INTENT_EXTRA)!!
         viewModel.dateTime.postValue(viewModel.getDateAndTime())
 
     }

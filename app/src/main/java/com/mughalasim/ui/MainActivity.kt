@@ -2,7 +2,6 @@ package com.mughalasim.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -42,7 +41,6 @@ class MainActivity : AppCompatActivity() {
 
         // Observe changes in data and set them to the adapter
         viewModel.peopleList.observe(this, {
-            Log.d(Shared.TAG, "Data received of size: " + it.count())
             (binding.recyclerView.adapter as Adapter).addData(it)
             viewModel.showDialog.value = it.isEmpty()
         })
@@ -70,6 +68,14 @@ class MainActivity : AppCompatActivity() {
         // Call the API
         viewModel.getDataFromAPI()
 
+    }
+
+    override fun onPause() {
+        // If the activity is paused while loading, then remove the loading bar
+        if(viewModel.showLoading.value == true){
+            (binding.recyclerView.adapter as Adapter).showLoading(false)
+        }
+        super.onPause()
     }
 
     private fun Context.toast(message: CharSequence) =
