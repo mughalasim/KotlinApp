@@ -16,28 +16,35 @@ class MainActivityViewModel : ViewModel() {
     var showDialog: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
     var showToast: MutableLiveData<String> = MutableLiveData<String>("")
     var hasNext: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
+    var canLoadMore: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
     var showLoading: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
     var pageNumber: Int = Shared.DEFAULT_PAGE_NUMBER
     var peopleList: MutableLiveData<List<PeopleModel>> = MutableLiveData(listOf())
 
     fun getDataFromAPI() {
+        // Clear previous dialogs and show a loading screen
         showLoading.postValue(true)
+        showDialog.postValue(false)
 
         ApiInterface.create().getResult(pageNumber).enqueue(object : Callback<ResultModel> {
 
             override fun onFailure(call: Call<ResultModel>?, t: Throwable?) {
+                // Clear the loading progress bar
                 showLoading.postValue(false)
+                // If the user was not able to load the first page then show a large dialog
                 if (pageNumber == 1){
                     txtErrorMessage.postValue("Failed to load data: " + t.toString())
                     showDialog.postValue(true)
                 } else {
+                    // The first page was loaded so it must have been a connection issue at this point
                     showToast.postValue("Failed to load more results")
+                    canLoadMore.postValue(true)
                 }
             }
 
             override fun onResponse(call: Call<ResultModel>?, response: Response<ResultModel>?) {
+                // Clear the loading progress bar
                 showLoading.postValue(false)
-                showDialog.postValue(false)
 
                 val code = response?.code()
 
@@ -62,7 +69,7 @@ class MainActivityViewModel : ViewModel() {
 
                 // If there is more data to load set that here
                 // The list items where only ten so I decided to call the API till the last page
-                // Obviously would be have been better to call first 4 pages first then let the scroll listener
+                // Obviously would have been better to call first 4 pages first then let the scroll listener
                 // detect when the user has reached the end to load more
                 hasNext.postValue(response.body()?.next != null)
 
