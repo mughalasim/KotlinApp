@@ -10,10 +10,12 @@ import retrofit2.http.Query
 
 interface ApiInterface {
 
+    // Calling the API with the page number
     @GET("people/")
     fun getResult(@Query("page") page: Int): Call<ResultModel>
 
     companion object Factory {
+        // Create the API single instance once and reuse as a companion object
         fun create(): ApiInterface {
             val retrofit = Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())

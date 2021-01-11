@@ -67,6 +67,9 @@ class MainActivityViewModel : ViewModel() {
                 }
 
                 // If there is more data to load set that here
+                // The list items where only ten so I decided to call the API till the last page
+                // Obviously would be have been better to call first 4 pages first then let the scroll listener
+                // detect when the user has reached the end to load more
                 hasNext.postValue(response.body()?.next != null)
 
             }

@@ -8,8 +8,9 @@ import org.junit.Test
 
 class APITest {
 
-    // These are ver generic tests to check if the API works, ofoucrse If i had more time i would
+    // These are very generic tests to check if the API works, of course If i had more time i would
     // write specific test to check things like data types, resources returned, or how the API would behave with wrong data sent
+    // Also mocking the API would be a good practice as it will give a more controlled environment
 
     // Check if the API is live
     @Test
@@ -35,7 +36,7 @@ class APITest {
         // call the api for the first page
         val apiResponse = ApiInterface.create().getResult(1).execute()
         // Check if the API responds with no null data on the first page
-        apiResponse.body()?.results?.isEmpty()?.let { assertTrue(it) }
+        assertEquals(apiResponse.body()?.results?.isEmpty(), false)
     }
 
     // Check if there is more than one data element returned in the array

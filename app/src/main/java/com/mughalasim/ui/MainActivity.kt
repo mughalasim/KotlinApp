@@ -29,7 +29,10 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.recyclerView.layoutManager =
             LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
-        binding.recyclerView.adapter = Adapter(applicationContext)
+        binding.recyclerView.adapter = Adapter(this)
+
+        // On initial screen launch we do not wish to show the message dialog
+        viewModel.showDialog.postValue(false)
 
         // When retry is tapped, set the page number to the default and call the API
         binding.btnRetry.setOnClickListener {

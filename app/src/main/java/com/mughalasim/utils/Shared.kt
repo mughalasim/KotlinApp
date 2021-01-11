@@ -1,31 +1,18 @@
 package com.mughalasim.utils
 
-import java.text.DecimalFormat
-
 class Shared {
     companion object {
+        // Base url of the API easier to manage API versions from a central location
         @JvmField
         val BASE_URL = "https://swapi.dev/api/"
 
+        // For logging purposes
         @JvmField
         val TAG = "DEBUG APP"
 
+        // The default page to start fetching data from
         @JvmField
         val DEFAULT_PAGE_NUMBER = 1
 
-        fun getTimeFromMinutes(time: Int): String {
-            val dec = DecimalFormat("00")
-
-            var n = time % (24 * 3600)
-            val hour: Int = n / 3600
-
-            n %= 3600
-            val minutes: Int = n / 60
-
-            n %= 60
-            val seconds: Int = n
-
-            return "${dec.format(hour)}:${dec.format(minutes)}:${dec.format(seconds)}"
-        }
     }
 }

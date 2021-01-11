@@ -28,10 +28,6 @@ class Adapter(private val context: Context) :
 
     fun showLoading(show: Boolean) {
         // Add a loading progress bar under the last list item while fetching more.
-        // The list items where only ten so I decided to call the API till the last page
-        // Obviously would be have been better to call first 4 pages first then let the scroll listener
-        // detect when the user has reached the end to load more
-
         if (show) {
             list = list?.plus(PeopleModel("", "", "", "", true))
         } else {
