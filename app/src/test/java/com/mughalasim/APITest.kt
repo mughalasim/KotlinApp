@@ -16,36 +16,36 @@ class APITest {
     @Test
     fun `Does it return a 200` () {
         // call the api for the first page
-        val apiResponse = ApiInterface.create().getResult(1).execute()
+        val apiResponse = ApiInterface.create().getResult("").execute()
         // Check if the API responds with a status cod of 200
         assertEquals(apiResponse.code(), 200)
     }
 
     // Check if the API handles invalid data sent
     @Test
-    fun `Does it return a 404` () {
+    fun `Does it return a 200 with invalid next page` () {
         // call the api for an invalid page
-        val apiResponse = ApiInterface.create().getResult(-1).execute()
+        val apiResponse = ApiInterface.create().getResult("INVALID_NEXT").execute()
         // Check if the API responds with a status code of 404
-        assertEquals(apiResponse.code(), 404)
+        assertEquals(apiResponse.code(), 200)
     }
 
     // Check if the data returned isn't null
     @Test
-    fun `Data returned on the first page is not empty or null` () {
+    fun `Data returned on the first page is not empty` () {
         // call the api for the first page
-        val apiResponse = ApiInterface.create().getResult(1).execute()
+        val apiResponse = ApiInterface.create().getResult("").execute()
         // Check if the API responds with no null data on the first page
-        assertEquals(apiResponse.body()?.results?.isEmpty(), false)
+        assertEquals(apiResponse.body()?.data?.children?.isEmpty(), false)
     }
 
     // Check if there is more than one data element returned in the array
     @Test
-    fun `Does it return more than 0 people` () {
+    fun `Does it return more than 0 items on the first page` () {
         // call the api for the first page
-        val apiResponse = ApiInterface.create().getResult(1).execute()
+        val apiResponse = ApiInterface.create().getResult("").execute()
         // Check if the API responds with some elements
-        assertTrue(apiResponse.body()?.results?.count()!! > 0)
+        assertTrue(apiResponse.body()?.data?.children?.count()!! > 0)
     }
 
 }

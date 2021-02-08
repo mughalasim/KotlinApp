@@ -22,8 +22,7 @@ class DescActivity : AppCompatActivity() {
         binding.field = viewModel
         binding.lifecycleOwner = this
 
-        viewModel.people = intent.getParcelableExtra(Shared.INTENT_EXTRA)!!
-        viewModel.dateTime.postValue(viewModel.getDateAndTime())
+        viewModel.model = intent.getParcelableExtra(Shared.INTENT_EXTRA)!!
 
     }
 }

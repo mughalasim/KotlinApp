@@ -3,9 +3,8 @@ package com.mughalasim.model
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mughalasim.network.ApiInterface
-import com.mughalasim.network.model.PeopleModel
-import com.mughalasim.network.model.ResultModel
-import com.mughalasim.utils.Shared
+import com.mughalasim.network.model.DataOneModel
+import com.mughalasim.network.model.MainDataModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,21 +17,21 @@ class MainActivityViewModel : ViewModel() {
     var hasNext: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
     var canLoadMore: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
     var showLoading: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
-    var pageNumber: Int = Shared.DEFAULT_PAGE_NUMBER
-    var peopleList: MutableLiveData<List<PeopleModel>> = MutableLiveData(listOf())
+    var pageNumber: String? = null
+    var dataOneModel: MutableLiveData<DataOneModel> = MutableLiveData(DataOneModel())
 
     fun getDataFromAPI() {
         // Clear previous dialogs and show a loading screen
         showLoading.postValue(true)
         showDialog.postValue(false)
 
-        ApiInterface.create().getResult(pageNumber).enqueue(object : Callback<ResultModel> {
+        ApiInterface.create().getResult(pageNumber).enqueue(object : Callback<MainDataModel> {
 
-            override fun onFailure(call: Call<ResultModel>?, t: Throwable?) {
+            override fun onFailure(call: Call<MainDataModel>?, t: Throwable?) {
                 // Clear the loading progress bar
                 showLoading.postValue(false)
                 // If the user was not able to load the first page then show a large dialog
-                if (pageNumber == 1){
+                if (pageNumber == null){
                     txtErrorMessage.postValue("Failed to load data: " + t.toString())
                     showDialog.postValue(true)
                 } else {
@@ -42,7 +41,7 @@ class MainActivityViewModel : ViewModel() {
                 }
             }
 
-            override fun onResponse(call: Call<ResultModel>?, response: Response<ResultModel>?) {
+            override fun onResponse(call: Call<MainDataModel>?, response: Response<MainDataModel>?) {
                 // Clear the loading progress bar
                 showLoading.postValue(false)
 
@@ -55,23 +54,18 @@ class MainActivityViewModel : ViewModel() {
                 }
 
                 // Post results received from the api
-                peopleList.postValue(response.body()?.results ?: listOf())
+                dataOneModel.postValue(response.body()?.data ?: DataOneModel())
 
                 // If the list is empty, show a message
-                if (peopleList.value?.size ?: 0 < 1) {
-                    if(pageNumber == 1){
+                if (response.body()?.data?.children?.size ?: 0 < 1) {
+                    if (pageNumber == ""){
                         txtErrorMessage.postValue("No data found, You may retry")
                         showDialog.postValue(true)
-                    } else {
-                        showToast.postValue("No more results returned")
                     }
                 }
 
                 // If there is more data to load set that here
-                // The list items where only ten so I decided to call the API till the last page
-                // Obviously would have been better to call first 4 pages first then let the scroll listener
-                // detect when the user has reached the end to load more
-                hasNext.postValue(response.body()?.next != null)
+                hasNext.postValue(response.body()?.data?.after != null)
 
             }
         })

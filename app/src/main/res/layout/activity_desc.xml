@@ -49,80 +49,69 @@
 
         <TextView
             android:id="@+id/txt_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{field.people.name}"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="end"
+            android:text="@{field.model.data.author_fullname}"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/data_value_text"
             app:layout_constraintEnd_toStartOf="@+id/guideline_2"
+            app:layout_constraintStart_toEndOf="@+id/label_name"
             app:layout_constraintTop_toTopOf="@+id/guideline_3" />
 
         <TextView
             android:id="@+id/label_height"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/txt_height"
+            android:text="@string/txt_title"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/label_text"
             app:layout_constraintStart_toStartOf="@+id/guideline_1"
-            app:layout_constraintTop_toBottomOf="@+id/label_name" />
+            app:layout_constraintTop_toTopOf="@+id/txt_height" />
 
         <TextView
             android:id="@+id/txt_height"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@{field.people.height}"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="40dp"
+            android:gravity="end"
+            android:text="@{field.model.data.title}"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/data_value_text"
             app:layout_constraintEnd_toStartOf="@+id/guideline_2"
+            app:layout_constraintStart_toEndOf="@+id/label_height"
             app:layout_constraintTop_toBottomOf="@+id/txt_name" />
 
         <TextView
             android:id="@+id/label_mass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/txt_mass"
+            android:text="@string/txt_link_flair_text_color"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/label_text"
             app:layout_constraintStart_toStartOf="@+id/guideline_1"
-            app:layout_constraintTop_toBottomOf="@+id/label_height" />
+            app:layout_constraintTop_toTopOf="@+id/txt_mass" />
 
         <TextView
             android:id="@+id/txt_mass"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@{field.people.mass}"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="40dp"
+            android:gravity="end"
+            android:text="@{field.model.data.link_flair_text_color}"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/data_value_text"
             app:layout_constraintEnd_toStartOf="@+id/guideline_2"
+            app:layout_constraintStart_toEndOf="@+id/label_mass"
             app:layout_constraintTop_toBottomOf="@+id/txt_height" />
 
 
-        <TextView
-            android:id="@+id/label_date_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/txt_date_and_time"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/label_text"
-            app:layout_constraintStart_toStartOf="@+id/guideline_1"
-            app:layout_constraintTop_toBottomOf="@+id/label_mass" />
-
-        <TextView
-            android:id="@+id/txt_date_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@{field.dateTime}"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/data_value_text"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_2"
-            app:layout_constraintTop_toBottomOf="@+id/txt_mass" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

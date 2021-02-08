@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">KotlinApp</string>
     <string name="txt_retry">Retry</string>
-    <string name="txt_name">Name</string>
-    <string name="txt_height">Height</string>
-    <string name="txt_mass">Mass</string>
+    <string name="txt_name">Author Name</string>
+    <string name="txt_title">Title</string>
+    <string name="txt_link_flair_text_color">Text color</string>
     <string name="txt_date_and_time">Date and Time</string>
     <string name="txt_load_more">Load more</string>
 </resources>

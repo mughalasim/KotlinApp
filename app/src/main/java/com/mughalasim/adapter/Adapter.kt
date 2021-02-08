@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mughalasim.R
 import com.mughalasim.databinding.ListItemBinding
-import com.mughalasim.network.model.PeopleModel
+import com.mughalasim.network.model.ChildrenDataModel
 import com.mughalasim.ui.DescActivity
+import com.mughalasim.utils.Shared
 
 class Adapter(private val context: Context, private val callbackInterface: CallbackInterface) :
     RecyclerView.Adapter<Adapter.ViewHolder>() {
@@ -18,9 +19,9 @@ class Adapter(private val context: Context, private val callbackInterface: Callb
         fun loadMore()
     }
 
-    private var list: List<PeopleModel>? = listOf()
+    private var list: List<ChildrenDataModel>? = listOf()
 
-    fun addData(moreData: List<PeopleModel>) {
+    fun addData(moreData: List<ChildrenDataModel>) {
         list = list?.plus(moreData)
         this.notifyDataSetChanged()
     }
@@ -28,7 +29,7 @@ class Adapter(private val context: Context, private val callbackInterface: Callb
     fun showLoading(show: Boolean) {
         // Add a loading progress bar under the last list item while fetching more.
         list = if (show) {
-            list?.plus(PeopleModel(is_loading = true, can_load_more = false))
+            list?.plus(ChildrenDataModel(is_loading = true, can_load_more = false))
         } else {
             list?.dropLastWhile { it.is_loading == true }
         }
@@ -38,7 +39,7 @@ class Adapter(private val context: Context, private val callbackInterface: Callb
     fun showCanLoadMore(show: Boolean) {
         // Add a load more button under the last list item when there is the option to load more
         list = if (show) {
-            list?.plus(PeopleModel(is_loading = false, can_load_more = true))
+            list?.plus(ChildrenDataModel(is_loading = false, can_load_more = true))
         } else {
             list?.dropLastWhile { it.can_load_more == true }
         }
@@ -59,7 +60,7 @@ class Adapter(private val context: Context, private val callbackInterface: Callb
                 binding.btnLoadMore.visibility = View.GONE
             }
 
-            binding.txtName.text = list?.get(position)?.name
+            binding.txtName.text = list?.get(position)?.data?.title
 
             binding.btnLoadMore.setOnClickListener {
                 showCanLoadMore(false)
@@ -74,7 +75,7 @@ class Adapter(private val context: Context, private val callbackInterface: Callb
                 }
                 val intent = Intent(context, DescActivity::class.java)
                 // Pass data to next activity as a parsable
-                intent.putExtra("person", list?.get(position))
+                intent.putExtra(Shared.INTENT_EXTRA, list?.get(position))
                 context.startActivity(intent)
             }
         }
